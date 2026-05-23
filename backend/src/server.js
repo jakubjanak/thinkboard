@@ -10,15 +10,15 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // middleware
-app.use(express.json()); // getting us access to req.body
-// ratelimiter for users
-app.use(rateLimiter);
 // added origin for frontend to solve CORS issue
 app.use(
   cors({
     origin: "http://localhost:5173",
   }),
 );
+app.use(express.json()); // getting us access to req.body
+// ratelimiter for users
+app.use(rateLimiter);
 // simple custom middleware
 app.use((req, res, next) => {
   console.log(`Request method is ${req.method} & request URL is ${req.url}`);
