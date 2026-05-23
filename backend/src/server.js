@@ -3,6 +3,7 @@ import notesRoutes from "./routes/notesRoutes.js";
 import "dotenv/config";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/ratelimiter.js";
+import cors from "cors";
 
 const app = express();
 
@@ -12,6 +13,12 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json()); // getting us access to req.body
 // ratelimiter for users
 app.use(rateLimiter);
+// added origin for frontend to solve CORS issue
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 // simple custom middleware
 app.use((req, res, next) => {
   console.log(`Request method is ${req.method} & request URL is ${req.url}`);
