@@ -7,12 +7,6 @@ import toast from "react-hot-toast";
 const App = () => {
   return (
     <div>
-      <button
-        onClick={() => toast.error("congratz")}
-        className="btn btn-primary"
-      >
-        Click me
-      </button>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/create" element={<CreatePage />} />
